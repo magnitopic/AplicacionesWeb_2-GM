@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<!--Peuqeño ejemplo de JS-->
+	<div style="font-size: 2em;padding: 2vh;">
+		Capital of Germany?
+	</div>
+	<div>
+		<button id="b1">London</button>
+		<button id="b2">Berlin</button>
+		<button id="b3">Munich</button>
+		<button id="b4">Oslo</button>
+	</div>
+	<p id="result"></p>
+	<script>
+		document.getElementById("b1").addEventListener("click",()=>{
+			document.getElementById("result").innerText = "Wrong!!";
+		})
+		document.getElementById("b2").addEventListener("click",()=>{
+			document.getElementById("result").innerText = "Good Job!!!";
+		})
+		document.getElementById("b3").addEventListener("click",()=>{
+			document.getElementById("result").innerText = "Wrong!!";
+		})
+		document.getElementById("b4").addEventListener("click",()=>{
+			document.getElementById("result").innerText = "Wrong!!";
+		})
+	</script>
+</body>
+</html>
