@@ -1,23 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-<body>
-	<div class="Header">Bienbenido a mi tienda online de equipamento deportivo</div>
-	<div class="main">
-		<div class="sideBar">
-			<a href="">Noticias</a>
-		</div>
-		<div class="content">
-			contenido
-		</div>
-	</div>
-	<div class="footer">
-		Footer
-	</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0px;
+      }
+      .article {
+        margin: 10px 0px 10px;
+        border: 2px solid black;
+      }
+      .header {
+        background-color: rgb(216, 97, 97);
+        text-align: center;
+        font-size: 2em;
+        padding: 10px;
+      }
+      .container {
+        background-color: rgb(179, 47, 255);
+        padding: 10px;
+      }
+      .links {
+        background-color: darkcyan;
+        padding: 20px;
+        display: flex;
+        font-size: 1.5em;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 13%;
+        height: 23vh;
+      }
+
+      a {
+        color: black;
+      }
+      a:hover {
+        text-decoration: underline;
+        text-decoration-color: orange;
+      }
+
+      .footer {
+        background-color: green;
+        text-align: center;
+        padding: 7px;
+      }
+      .main {
+        display: flex;
+      }
+      p {
+        font-size: 1.8em;
+      }
+      .jump {
+        color: black;
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <!--anclas o marcapaginas-->
+
+    <div class="header">Napoleonic wars</div>
+    <div class="main">
+      <div class="links">
+        <a href="">Noticias</a>
+        <a href="">Productos</a>
+        <a href="">Ofertas</a>
+        <a href="">Contacto</a>
+      </div>
+      <div class="container">
+        <div><a href="#forth" class="jump">Jump to forth coalition</a></div>
+        <div class="article">
+          <div><p>War of the third coalition</p></div>
+          <div>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero iste
+            hic, laboriosam eius ipsa quidem alias architecto ex voluptatem
+            dolor quos, esse modi suscipit aut quae, corrupti quia totam
+            eligendi.
+          </div>
+        </div>
+        <div class="article" id="forth">
+          <div><p>War of the forth coalition</p></div>
+          <div>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero iste
+            hic, laboriosam eius ipsa quidem alias architecto ex voluptatem
+            dolor quos, esse modi suscipit aut quae, corrupti quia totam
+            eligendi.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">Copyright © 2021</div>
+  </body>
 </html>
