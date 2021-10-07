@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas</title>
+  </head>
+  <body>
+    <canvas onclick="dibuja_mas()" id="miCanvas" width="600" height="600">
+    </canvas>
+
+    <script>
+      //Los canvas se controlan con JS
+      var c = document.getElementById("miCanvas");
+      var ctx = c.getContext("2d");
+
+      for (i = 0; i < 100; i++) {
+        line();
+      }
+      function line() {
+        ctx.moveTo(random(), random());
+        ctx.lineTo(random(), random());
+        ctx.stroke();
+      }
+
+      function random() {
+        return Math.random() * 600;
+      }
+
+      function dibuja_mas() {
+        ctx.moveTo(790, 420);
+        ctx.lineTo(54, 50);
+        ctx.stroke();
+      }
+    </script>
+  </body>
+</html>
