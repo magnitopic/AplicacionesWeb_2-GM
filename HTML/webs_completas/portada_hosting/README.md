@@ -1,0 +1,1 @@
+index.html de portada hosting, es el index de nuestro hosting
