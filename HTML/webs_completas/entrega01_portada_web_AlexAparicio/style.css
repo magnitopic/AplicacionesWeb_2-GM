@@ -1,0 +1,70 @@
+*{
+	margin: 0;
+	font-family: tf2;
+}
+body{
+	background-image: url(imagenes/fondo.jpg);
+}
+
+input{
+	cursor: pointer;
+	font-size: large;
+}
+
+#header{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background: rgb(53, 53, 53);
+	color: rgb(204, 133, 0);
+	margin: 7px;
+	padding: 5px;
+	border-radius: 10px;
+}
+
+#login{
+	background: rgb(0, 0, 0);
+	padding: 5px;
+	border: none;
+	border-radius: 10px;
+	color: rgb(204, 133, 0);
+}
+
+#main{
+	padding: 1vw;
+	display: flex;
+	justify-content: space-between;
+}
+
+#side{
+	padding: 10px;
+	background: blue;
+	margin-left: 10px;
+	border-radius: 10px;
+}
+
+#imageLinks{
+	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-around;
+	border-radius: 10px;
+	width: 100%;
+	background: red;
+}
+
+#content{
+	width: 100%;
+	padding: 10px;
+}
+
+.imageButton{
+	border-style: solid;
+	border-radius: 10px;
+}
+
+@font-face {
+    font-family: 'tf2';
+    src: url('fuentes/tf2build.ttf');
+}
