@@ -12,6 +12,7 @@ input{
 }
 
 #header{
+	text-decoration: none;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -20,6 +21,12 @@ input{
 	margin: 7px;
 	padding: 5px;
 	border-radius: 10px;
+	z-index: 1;
+}
+
+.headerLink{
+	text-decoration: none;
+	color: rgb(204, 133, 0);
 }
 
 #login{
@@ -31,37 +38,109 @@ input{
 }
 
 #main{
-	padding: 1vw;
+	padding: 10px;
 	display: flex;
 	justify-content: space-between;
 }
 
 #side{
-	padding: 10px;
 	background: blue;
-	margin-left: 10px;
 	border-radius: 10px;
+	padding: 10px;
+	height: fit-content;
+}
+
+#content{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-right: 20px;
 }
 
 #imageLinks{
-	padding: 10px;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-around;
 	border-radius: 10px;
-	width: 100%;
 	background: red;
-}
-
-#content{
 	width: 100%;
-	padding: 10px;
 }
 
 .imageButton{
 	border-style: solid;
 	border-radius: 10px;
+	cursor: pointer;
+}
+
+#mainLinks{
+	background-color: green;
+	margin-top: 20px;
+	border-radius: 10px;
+	width: 100%;
+	margin: 20px;
+}
+
+.links{
+	padding: 20px;
+	margin-bottom: 20px;
+	border-bottom: solid;
+	text-decoration: none;
+}
+.date{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: row;
+}
+
+#footer{
+	background: rgb(53, 53, 53);
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	position: sticky;
+	bottom: 0%;
+	z-index: 1;
+	width: 100%;
+	font-family: 'Times New Roman', Times, serif;
+	color: white;
+}
+
+
+/* Socials */
+#twitter {
+	color: #55acee;
+	text-align: center;
+	font-size: 5vh;
+	width: 5.3vh;
+	height: 5.3vh;
+	margin: 1vh;
+	text-decoration: none;
+}
+
+#youtube {
+	color: #bb0000;
+	background: linear-gradient(90deg, rgba(0, 0, 0, 0) 10%, #ffffff 10%, #ffffff 90%, rgba(0, 0, 0, 0) 90%);
+	text-align: center;
+	font-size: 5vh;
+	width: 5vh;
+	height: 3vh;
+	margin: 1vh;
+	line-height: 23px;
+	text-decoration: none;
+}
+
+#facebook{
+	color: #4267B2;
+	text-align: center;
+	font-size: 5vh;
+	width: 5vh;
+	height: 3vh;
+	margin: 1vh;
+	line-height: 23px;
+	text-decoration: none;
 }
 
 @font-face {
