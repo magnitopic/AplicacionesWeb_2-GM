@@ -44,10 +44,12 @@ input{
 }
 
 #side{
-	background: blue;
+	background: #DB997B;
 	border-radius: 10px;
 	padding: 10px;
+	margin-top: 5px;
 	height: fit-content;
+	width: 35%;
 }
 
 #content{
@@ -58,24 +60,29 @@ input{
 	margin-right: 20px;
 }
 
-#imageLinks{
+.imageLinks{
+	border-radius: 10px;
+	background: #8C313E;
+	padding: 30px;
+	border-style: solid;
+	cursor: pointer;
+	margin-top: 5px;
+}
+
+#imageLinksContainer{
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-around;
-	border-radius: 10px;
-	background: red;
 	width: 100%;
 }
 
 .imageButton{
-	border-style: solid;
 	border-radius: 10px;
-	cursor: pointer;
 }
 
 #mainLinks{
-	background-color: green;
+	background-color: #DED7A5;
 	margin-top: 20px;
 	border-radius: 10px;
 	width: 100%;
@@ -84,7 +91,6 @@ input{
 
 .links{
 	padding: 20px;
-	margin-bottom: 20px;
 	border-bottom: solid;
 	text-decoration: none;
 }
