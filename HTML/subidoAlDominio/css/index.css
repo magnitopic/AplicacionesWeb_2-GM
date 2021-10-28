@@ -1,0 +1,38 @@
+*{
+	margin: 0;
+}
+
+.head{
+	background: linear-gradient(200deg, #38fad3, rgba(250, 56, 95, 0.993));
+	height: 30vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: underline;
+}
+
+#flecha{
+	font-size: 2em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 20vh;
+	z-index: 1;
+	animation: mymove 2.5s;
+	animation-iteration-count:infinite;
+}
+
+@keyframes mymove {
+	0% {top: 20vh;}
+	50% {top: 23vh;}
+	100% {top: 20vh;}
+}
+
+.enlaces{
+	display: flex;
+	margin-top: 5vh;
+	align-items: center;
+	flex-direction: column;
+	font-size: 4vh;
+}
