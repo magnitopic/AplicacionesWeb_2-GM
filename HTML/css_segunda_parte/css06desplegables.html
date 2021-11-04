@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.contenido{
+			display: none;
+			border: solid 2px black;
+			width: fit-content;
+			padding: 2vh;
+		}
+		.desplegable{
+			width: fit-content;
+		}
+		.desplegable:hover .contenido{
+			display: flex;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="desplegable">
+		<div>
+			<h2>Desplegable</h2>
+		</div>
+		<div class="contenido">
+			Contenido del desplegable
+		</div>
+	</div>
+</body>
+
+</html>
