@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--NOTE:This page dosen't work with LiveServer-->
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script>
+</head>
+
+<body>
+	<div style="text-align: center;margin: 20px;">
+		Haz click en las diferencias de la imagen de la derecha:
+	</div>
+	<canvas style="background-color: black;" id="canvas"></canvas>
+	<div id="info" style="height: 50px;"></div>
+	<img src="imagenes/original_1.jpg" style="visibility: hidden;">
+	<img src="imagenes/diferencias1.jpg" style="visibility: hidden;">
+
+	<script>
+		//codigo JS para cargar las imagenes dentro del canvas
+		//y detectar si el user ha hecho click en la diferencia
+		const canvas = document.getElementById("canvas");
+		//directamente atraves de un canvas no podemos dibujar nada en el
+		//para dibujar en un canvas tenemos que hacerlo através de
+		//lo que se llama se context 2d
+		const ctx = canvas.getContext('2d');
+		//a traves de ctx ya si puedo dibujar en el canvas imagenes
+		//y cualquier otra cosa
+
+		//Pequeña prueba:
+		canvas.width = 800;
+		canvas.height = 400;
+		ctx.fillStyle = "white";
+		ctx.fillText("Hello There", 50, 50);
+
+		//para realizar el juego vamos a guardar cada imagen en una variable
+		const img_1 = new Image();	//new Image() lo que hace es meter una imagen nueva vacia
+		//en la const img_1
+		const img_2 = new Image();
+		//ahora indicamos el archivo de imagen de cada variable de imagen
+		img_1.src = "imagenes/original_1.jpg";
+		img_2.src = "imagenes/diferencias1.jpg";
+		//dibujamos las imagenes en el canvas:
+		ctx.drawImage(img_1, 0, 0, 400, 400);
+		ctx.drawImage(img_2, 400, 0, 400, 400);
+
+		//vamos ha decir que hacer cuando se hace click en el canvas usando jQuery
+		$("#canvas").click((e) => {
+			//alert("Yes");
+			var x = e.pageX;
+			var y = e.pageY;
+			var mensaje = "Has hecho click en X: " + x + " y:" + y;
+			$("#info").html(mensaje);
+			if ((x >= 550) && (x <= 575) && (y >= 222) && (y <= 250)) {
+				alert("Yay, has ganado");
+			} else {
+				alert("No está aquí. Sige juagando");
+			}
+		});
+
+	</script>
+</body>
+
+</html>
