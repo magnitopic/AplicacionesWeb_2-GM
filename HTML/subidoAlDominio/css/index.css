@@ -6,6 +6,7 @@
 	background: linear-gradient(200deg, #38fad3, rgba(250, 56, 95, 0.993));
 	height: 30vh;
 	display: flex;
+	text-align: center;
 	justify-content: center;
 	align-items: center;
 	text-decoration: underline;
