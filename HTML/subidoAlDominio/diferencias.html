@@ -14,14 +14,18 @@
 </head>
 
 <body>
-	<div id="title">
+	<div id="title" class="center">
 		Haz click en las diferencias de la imagen de la derecha:
 	</div>
-
 	<canvas style="background-color: black;" id="canvas"></canvas>
-	<div id="info"></div>
-	<div id="cordenadas"></div>
+	<div id="info" class="center"></div>
+	<div id="cordenadas" class="center"></div>
+	<div class="center" id="contador">
+		<div>Tiempo restante: </div>
+		<div id="cuentaAtras">20</div>
+	</div>
 	
+
 	<img src="imagenes/original_1.jpg" class="imagenDeCarga">
 	<img src="imagenes/diferencias1.jpg" class="imagenDeCarga">
 	<img src="imagenes/original_2.jpg" class="imagenDeCarga">
@@ -29,6 +33,9 @@
 
 	<!--JavaScript-->
 	<script>
+		//var con la fecha y hora
+		var InitTime = new Date();
+
 		const canvas = document.getElementById("canvas");
 		const ctx = canvas.getContext('2d');
 
@@ -46,8 +53,10 @@
 		img_3.src = "imagenes/original_2.jpg";
 		img_4.src = "imagenes/diferencias2.jpg";
 
-		ctx.drawImage(img_1, 0, 0, 400, 400);
-		ctx.drawImage(img_2, 400, 0, 400, 400);
+		$(document).ready(() => {
+			ctx.drawImage(img_1, 0, 0, 400, 400);
+			ctx.drawImage(img_2, 400, 0, 400, 400);
+		});
 
 		var dif1 = 0;
 		var dif2 = 0;
@@ -93,6 +102,9 @@
 
 				if (dif1 + dif2 + dif3 + dif4 + dif5 == 5) {
 					alert("Has adivinado todas las diferencias de esta imagen");
+					var FinTime = new Date();
+					var TakenTime = FinTime.getTime() - InitTime.getTime();
+					alert("Has tardado " + Math.round(TakenTime / 1000) + " segundos");
 					pantalla = 2;
 					ctx.drawImage(img_3, 0, 0, 400, 400);
 					ctx.drawImage(img_4, 400, 0, 400, 400);
@@ -121,9 +133,42 @@
 
 				if (dif1 + dif2 + dif3 == 3) {
 					alert("Has adivinado todas las diferencias. Felicidades!");
-				} 
+					clearInterval(timer);
+					$("#canvas").hide();
+				}
 			}
 		});
+
+		var color = 0;
+		//funcion que decrementa la var cuenta y muestra su valor en el div de cuenta atras
+		function decrementa_cuenta() {
+			var cuenta=document.getElementById("cuentaAtras").innerText;
+			cuenta--;
+			document.getElementById("cuentaAtras").innerHTML =cuenta;
+			if (cuenta == 0) {
+				alert("Se te ha acabado el tiempo. GAME OVER.");
+				clearInterval(timer);
+				$("#canvas").hide();
+			} else if (cuenta <= 10) {
+				if (color == 0) {
+					$("#contador").animate({
+						fontSize: "4em",
+						color: "red",
+					}, 300);
+					color++;
+				} else {
+					$("#contador").animate({
+						fontSize: "3em",
+						color: "black",
+						backgroundColor: "inherit"
+					}, 300);
+					color = 0;
+				}
+			}
+		}
+
+		//ejecutar la función decrementa_cuenta cada segundo
+		var timer = setInterval(decrementa_cuenta, 1000);
 
 	</script>
 </body>
