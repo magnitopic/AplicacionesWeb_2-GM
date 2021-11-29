@@ -9,6 +9,8 @@
 	<!--Import del jQuery-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script>
+	<!--Import de Js cookie-->
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
 	<!--Fonts-->
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
@@ -25,10 +27,13 @@
 	</div>
 
 	<script>
-		var vocales=["a","e","i","o","u"];
+		//Recuperamos el valor de la cookie
+		var puntos=parseInt(Cookies.get("puntos"))+200;
+		console.log(puntos);
+
+		var vocales = ["a", "e", "i", "o", "u"];
 		var frase_a_adinar = "La memoria es la inteligencia de los tontos";
 		var frase_guiones = "";
-		var puntos=200;
 		//para recorrer un string en JS se usa un for in
 		for (i in frase_a_adinar) {
 			if (frase_a_adinar[i] == " ") {
@@ -43,23 +48,25 @@
 		function adivinar() {
 			var introducido = prompt("Intruduce la frase");
 			if (frase_a_adinar.toLowerCase() == introducido.toLocaleLowerCase()) {
-				alert("Felicidades! Has adivinado la frase con "+puntos+"/200 puntos");
+				alert("Felicidades! Has adivinado la frase con " + puntos + "/300 puntos");
 				alert("A ver si adivinas la ultima.");
-				location.href="frase3.html"
+				//Vamos a meter en una cookie para que los pueda usar frase2.html
+				Cookies.set("puntos",puntos);
+				location.href = "frase3.html"
 			} else {
 				alert("Vuelve a intentarlo");
-				puntos-=40;
+				puntos -= 40;
 			}
 		}
 
 		function desvelar() {
 			var letra_introducida = prompt("Introduce una letra")
 			var array_giones = frase_guiones.split("");
-			for(i in vocales){
-				if(letra_introducida==vocales[i]){
-					puntos-=(10*2);
-				}else{
-					puntos-=10;
+			for (i in vocales) {
+				if (letra_introducida == vocales[i]) {
+					puntos -= (10 * 2);
+				} else {
+					puntos -= 10;
 				}
 			}
 			for (i in frase_a_adinar) {

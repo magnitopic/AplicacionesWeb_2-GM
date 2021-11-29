@@ -45,7 +45,7 @@
 			if (frase_a_adinar.toLowerCase() == introducido.toLocaleLowerCase()) {
 				alert("Felicidades! Has adivinado la frase con "+puntos+"/100 puntos");
 				alert("A ver si adivinas la siguiente.");
-				location.href="frase2.html"
+				location.href="frase2.html?puntos="+puntos;
 			} else {
 				alert("Vuelve a intentarlo");
 				puntos-=20;

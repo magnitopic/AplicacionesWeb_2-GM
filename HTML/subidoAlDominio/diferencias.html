@@ -69,7 +69,7 @@
 
 		var pantalla = 1;
 
-		$("#playAgain").click(()=>{
+		$("#playAgain").click(() => {
 			location.reload(true);
 		});
 
@@ -149,9 +149,9 @@
 		var color = 0;
 		//funcion que decrementa la var cuenta y muestra su valor en el div de cuenta atras
 		function decrementa_cuenta() {
-			var cuenta=document.getElementById("cuentaAtras").innerText;
+			var cuenta = document.getElementById("cuentaAtras").innerText;
 			cuenta--;
-			document.getElementById("cuentaAtras").innerHTML =cuenta;
+			document.getElementById("cuentaAtras").innerHTML = cuenta;
 			if (cuenta == 0) {
 				alert("Se te ha acabado el tiempo. GAME OVER.");
 				clearInterval(timer);

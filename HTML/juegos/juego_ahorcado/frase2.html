@@ -25,10 +25,16 @@
 	</div>
 
 	<script>
+		//Recoger los puntos mandados desde la pagina anterior
+		var url = window.location.search;//Obtengo la URL
+		console.log("url: " + url)
+		//extraer de lo anterior el valor de puntos
+		var parametros =new URLSearchParams(url);
+		var puntos=parametros.get("puntos");
+
 		var vocales=["a","e","i","o","u"];
 		var frase_a_adinar = "La memoria es la inteligencia de los tontos";
 		var frase_guiones = "";
-		var puntos=200;
 		//para recorrer un string en JS se usa un for in
 		for (i in frase_a_adinar) {
 			if (frase_a_adinar[i] == " ") {

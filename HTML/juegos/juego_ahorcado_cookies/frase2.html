@@ -14,7 +14,7 @@
 
 	<!--Fonts-->
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-	<title>Adivinar 3</title>
+	<title>Adivinar 2</title>
 </head>
 
 <body>
@@ -28,13 +28,12 @@
 
 	<script>
 		//Recuperamos el valor de la cookie
-		var puntos=parseInt(Cookies.get("puntos"))+300;
+		var puntos=Cookies.get("puntos");
 		console.log(puntos);
 
 		var vocales = ["a", "e", "i", "o", "u"];
-		var frase_a_adinar = "sabe mas el diablo por viejo que por diablo";
+		var frase_a_adinar = "La memoria es la inteligencia de los tontos";
 		var frase_guiones = "";
-		var puntos = 300;
 		//para recorrer un string en JS se usa un for in
 		for (i in frase_a_adinar) {
 			if (frase_a_adinar[i] == " ") {
@@ -47,13 +46,14 @@
 
 
 		function adivinar() {
-			var introducido = prompt("Introduce la frase");
+			var introducido = prompt("Intruduce la frase");
 			if (frase_a_adinar.toLowerCase() == introducido.toLocaleLowerCase()) {
-				alert("Felicidades! Has adivinado la ultima frase con " + puntos + "/600 puntos");
-				location.href = "index.html"
+				alert("Felicidades! Has adivinado la frase con " + puntos + "/200 puntos");
+				alert("A ver si adivinas la ultima.");
+				location.href = "frase3.html"
 			} else {
 				alert("Vuelve a intentarlo");
-				puntos -= 60;
+				puntos -= 40;
 			}
 		}
 
@@ -62,13 +62,11 @@
 			var array_giones = frase_guiones.split("");
 			for (i in vocales) {
 				if (letra_introducida == vocales[i]) {
-					puntos -= (15 * 2);
+					puntos -= (10 * 2);
 				} else {
-					puntos -= 15;
+					puntos -= 10;
 				}
 			}
-
-
 			for (i in frase_a_adinar) {
 				var letra = frase_a_adinar[i];
 				if (letra.toLowerCase() == letra_introducida.toLowerCase()) {
