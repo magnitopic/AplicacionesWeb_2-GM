@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ball</title>
+	<!--Import del jQuery-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script>
+	<!--Import de Js cookie-->
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+</head>
+
+<body>
+	<canvas id="canvas" style="background-color: green;"></canvas>
+	<img style="visibility: hidden;height: 2px;" src="imagenes/bola.png" alt="">
+
+	<script>
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		canvas.width = 800;
+		canvas.height = 600;
+		degrees = 0;
+
+		var imagenPelota = new Image();
+		imagenPelota.src = "imagenes/bola.png";
+
+		//Variables posicion pelota
+		var x_bola = 0;
+		var y_bola = 0;
+
+		zona_meta = crearZona(300, 500, 200, 300);
+		zona_obstaculo = crearZona(200, 200, 100, 50);
+
+		function crearZona(x_zona, y_zona, ancho_zona, alto_zona) {
+			var zona = {
+				x: x_zona,
+				y: y_zona,
+				ancho: ancho_zona,
+				alto: alto_zona
+			}
+			return zona;
+		}
+
+		function pintar() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.drawImage(imagenPelota, x_bola, y_bola, 40, 40);
+			/* ball.rotate(degrees * Math.PI / 180); */
+			degrees += 10;
+
+			ctx.fillStyle = "white";
+			ctx.fillRect(zona_meta.x, zona_meta.y, zona_meta.ancho, zona_meta.alto)
+			ctx.fillStyle = "red"
+			ctx.fillRect(zona_obstaculo.x, zona_obstaculo.y, zona_obstaculo.ancho, zona_obstaculo.alto)
+			x_bola++;
+			y_bola++;
+		}
+
+		$(document).ready(() => {
+			pintar();
+		});
+
+		var intervalo = setInterval(pintar, 10);
+
+	</script>
+</body>
+
+</html>
