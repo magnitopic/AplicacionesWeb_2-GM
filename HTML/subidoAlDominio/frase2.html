@@ -28,7 +28,7 @@
 
 	<script>
 		//Recuperamos el valor de la cookie
-		var puntos=parseInt(Cookies.get("puntos"))+200;
+		var puntos = parseInt(Cookies.get("puntos")) + 200;
 		console.log(puntos);
 
 		var vocales = ["a", "e", "i", "o", "u"];
@@ -51,7 +51,7 @@
 				alert("Felicidades! Has adivinado la frase con " + puntos + "/300 puntos");
 				alert("A ver si adivinas la ultima.");
 				//Vamos a meter en una cookie para que los pueda usar frase2.html
-				Cookies.set("puntos",puntos);
+				Cookies.set("puntos", puntos);
 				location.href = "frase3.html"
 			} else {
 				alert("Vuelve a intentarlo");
