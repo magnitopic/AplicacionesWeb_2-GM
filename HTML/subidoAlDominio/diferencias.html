@@ -74,8 +74,13 @@
 		});
 
 		$("#canvas").click((e) => {
-			var x = e.pageX;
-			var y = e.pageY;
+
+			var posCanvasX = $("#canvas").position().left;
+			var posCanvasY = $("#canvas").position().top;
+
+			var x = Math.round(e.pageX - posCanvasX);
+			var y = Math.round(e.pageY - posCanvasY);
+			console.log(x, y);
 			var cordenadas = "Has hecho click en X: " + x + " Y:" + y;
 			$("#cordenadas").html(cordenadas);
 

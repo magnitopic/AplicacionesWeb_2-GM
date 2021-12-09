@@ -15,6 +15,7 @@
 
 <body>
 	<canvas id="canvas" style="background-color: green;"></canvas>
+	<div id="info"></div>
 	<img style="visibility: hidden;height: 2px;" src="imagenes/bola.png" alt="">
 
 	<script>
@@ -28,12 +29,34 @@
 		imagenPelota.src = "imagenes/bola.png";
 
 		//Variables posicion pelota
-		var x_bola = 0;
+		var x_bola = Math.random() * 720 + 40;
 		var y_bola = 0;
+		//teclas
+		const teclaD = 100;
+		const teclaA = 97;
+		const teclaW = 119;
+		const teclaS = 115;
+
+		//direcciones de la pelota
+		const derecha = 1;
+		const abajo = 2;
+		const izquierda = 3;
+		const arriba = 4;
+
+		var direccion = abajo;
+		const vel = 3;
 
 		zona_meta = crearZona(300, 500, 200, 300);
-		zona_obstaculo = crearZona(200, 200, 100, 50);
+		var rnd = Math.random() * 620 + 40;
 
+		function doMore() {
+			zona_obstaculo = crearZona(rnd, 200, 100, 50);
+			var rnd = Math.random() * 620 + 40;
+			zona_obstaculo2 = crearZona(rnd, 300, 100, 50);
+			var rnd = Math.random() * 620 + 40;
+			zona_obstaculo3 = crearZona(rnd, 400, 100, 50);
+		}
+		doMore();
 		function crearZona(x_zona, y_zona, ancho_zona, alto_zona) {
 			var zona = {
 				x: x_zona,
@@ -54,14 +77,67 @@
 			ctx.fillRect(zona_meta.x, zona_meta.y, zona_meta.ancho, zona_meta.alto)
 			ctx.fillStyle = "red"
 			ctx.fillRect(zona_obstaculo.x, zona_obstaculo.y, zona_obstaculo.ancho, zona_obstaculo.alto)
-			x_bola++;
-			y_bola++;
+			ctx.fillRect(zona_obstaculo2.x, zona_obstaculo2.y, zona_obstaculo2.ancho, zona_obstaculo2.alto)
+			ctx.fillStyle = "blue"
+			ctx.fillRect(zona_obstaculo3.x, zona_obstaculo3.y, zona_obstaculo3.ancho, zona_obstaculo3.alto)
+			switch (direccion) {
+				case derecha:
+					x_bola += vel;
+					break;
+				case izquierda:
+					x_bola -= vel;
+					break;
+				case abajo:
+					y_bola += vel;
+					break;
+				case arriba:
+					y_bola -= vel;
+
+			}
+			//Detectar colisiones
+			if (x_bola >= zona_meta.x && x_bola <= (zona_meta.x + zona_meta.ancho) &&
+				y_bola >= zona_meta.y && y_bola <= zona_meta.y + zona_meta.alto) {
+				x_bola = Math.random() * 720 + 40;
+				y_bola = 0;
+				vel++;
+				doMore();
+			} else if (x_bola > canvas.width || y_bola > canvas.height || x_bola < 0 || y_bola < 0) {
+				alert("GAME OVER. No te puedes salir de la pantalla");
+				clearInterval(intervalo);
+			} else if (x_bola >= zona_obstaculo.x && x_bola <= (zona_obstaculo.x + zona_obstaculo.ancho) &&
+				y_bola >= zona_obstaculo.y && y_bola <= zona_obstaculo.y + zona_obstaculo.alto) {
+				alert("GAME OVER. El otro jugador ha parado tu bola");
+				clearInterval(intervalo);
+			}
 		}
 
 		$(document).ready(() => {
 			pintar();
 		});
 
+		$(document).keypress((e) => {
+			$("#info").html("Tecla pulsada: " + e.keyCode);
+			switch (e.keyCode) {
+				case teclaW:
+					direccion = arriba;
+					console.log(direccion);
+					break;
+				case teclaA:
+					direccion = izquierda;
+					console.log(direccion);
+					break;
+				case teclaS:
+					direccion = abajo;
+					console.log(direccion);
+					break;
+				case teclaD:
+					direccion = derecha;
+					console.log(direccion);
+					break;
+			}
+		});
+
+		alert("Llevar la pelota a la zona blanca de meta:\nA <- izquierda \nS <- abajo\nD <-derecha\nW <- arriba")
 		var intervalo = setInterval(pintar, 10);
 
 	</script>
