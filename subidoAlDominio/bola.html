@@ -23,7 +23,8 @@
 			<input type="button" id="playAgain" value="Jugar otra vez?">
 		</div>
 	</div>
-	<div id="info"></div>
+	<div id="info1"></div>
+	<div id="info2"></div>
 	<img style="visibility: hidden;height: 2px;" src="imagenes/bola.png" alt="">
 
 	<script>
@@ -50,12 +51,21 @@
 		const teclaA = 97;
 		const teclaW = 119;
 		const teclaS = 115;
+		const teclaD_MAYUS = 68;
+		const teclaA_MAYUS = 65;
+		const teclaW_MAYUS = 87;
+		const teclaS_MAYUS = 83;
 
 		//direcciones de la pelota
 		const derecha = 1;
 		const abajo = 2;
 		const izquierda = 3;
 		const arriba = 4;
+		const derechaAbajo = 12;
+
+		//Variables para saver que tecla se ha pulsado
+		var d_pulsada = false;
+		var s_pulsada = false;
 
 		var direccion = abajo;
 		var vel = 2;
@@ -100,6 +110,11 @@
 					break;
 				case arriba:
 					y_bola -= vel;
+					break
+				case derechaAbajo:
+					x_bola += vel;
+					y_bola += vel;
+					break
 
 			}
 			//Detectar colisiones
@@ -136,26 +151,55 @@
 		});
 
 		$(document).keypress((e) => {
-			$("#info").html("Tecla pulsada: " + e.keyCode);
+			$("#info1").html("Tecla pulsada: " + e.keyCode);
 			switch (e.keyCode) {
 				case teclaW:
+				case teclaW_MAYUS:
 					direccion = arriba;
 					console.log(direccion);
 					break;
 				case teclaA:
+				case teclaA_MAYUS:
 					direccion = izquierda;
 					console.log(direccion);
 					break;
 				case teclaS:
-					direccion = abajo;
-					console.log(direccion);
+				case teclaS_MAYUS:
+					s_pulsada = true
+					if (d_pulsada == true) {
+						direccion = derechaAbajo;
+					} else {
+						direccion = abajo;
+					}
 					break;
 				case teclaD:
-					direccion = derecha;
+				case teclaD_MAYUS:
+					d_pulsada = true
+					if (s_pulsada == true) {
+						direccion = derechaAbajo;
+					} else {
+						direccion = derecha;
+					}
 					console.log(direccion);
 					break;
 			}
 		});
+
+		//when keey is released
+		$(document).keyup((e) => {
+			$("#info2").html("tecla soltada: " + e.keyCode);
+			switch (e.keyCode) {
+				case teclaS_MAYUS:
+				case teclaS:
+					s_pulsada = false;
+					break;
+				case teclaD_MAYUS:
+				case teclaD:
+					d_pulsada = false;
+					break;
+			}
+		});
+
 
 		$("#playAgain").click(() => {
 			location.reload(true);

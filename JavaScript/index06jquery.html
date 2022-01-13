@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script>
 </head>
+
 <body>
 	<div>Ejemplo de jQuery</div>
 	<div>
@@ -20,41 +22,44 @@
 		<button onclick="efecto6()">Boton 6</button>
 	</div><br>
 	<div style="font-size: 1.5em;text-align: center;" id="test">
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iste architecto adipisci esse quas repellendus obcaecati praesentium incidunt suscipit eveniet iusto, maiores repudiandae in molestiae dolorum quasi, consequatur voluptates qui!
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iste architecto adipisci esse quas repellendus
+		obcaecati praesentium incidunt suscipit eveniet iusto, maiores repudiandae in molestiae dolorum quasi,
+		consequatur voluptates qui!
 	</div>
 	<script>
 		//codigo jQuery:
-		function efecto1(){
+		function efecto1() {
 			$("#test").fadeOut();
 		}
 
-		function efecto2(){
+		function efecto2() {
 			$("#test").fadeIn();
 		}
 
-		function efecto3(){
+		function efecto3() {
 			$("#test").slideUp();
 		}
 
-		function efecto4(){
+		function efecto4() {
 			$("#test").slideDown();
 		}
 
-		function efecto5(){
+		function efecto5() {
 			$("#test").animate({
-				fontSize:40,
+				fontSize: 40,
 				color: "blue",
 				backgroundColor: "red"
-			},500);
+			}, 500);
 		}
 
-		function efecto6(){
+		function efecto6() {
 			$("#test").animate({
 				fontSize: "1.5em",
 				color: "black",
 				backgroundColor: "inherit"
-			},300);
+			}, 300);
 		}
 	</script>
 </body>
+
 </html>
