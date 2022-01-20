@@ -5,19 +5,20 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="blackjack.css">
+	<link rel="stylesheet" href="css/blackjack.css">
 	<title>Black Jack</title>
 </head>
 
 <body>
 	<div id="title">Juego del Black Jack</div>
-	<div id="info"></div>
 	<div id="canvasDiv"><canvas id="canvas"></canvas></div>
 	<div id="botones">
 		<input type="button" value="Pedir Carta" onclick="pedirCarta()" id="pedir" class="button">
+		<input type="button" value="Jugar otra vez!" id="reset" onclick="playagain()">
 		<input type="button" value="Plantarme" onclick="plantarme()" id="plantar" class="button">
 	</div>
-	<script>
+	<div id="info"></div>
+	<script>	
 		// Codigo copiado para hacer esquinas redondas
 		CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
 			if (w < 2 * r) r = w / 2;
@@ -30,8 +31,7 @@
 			this.arcTo(x, y, x + w, y, r);
 			this.closePath();
 			return this;
-		}
-
+		}	
 		var canvas = document.getElementById("canvas");
 		var ctx = canvas.getContext("2d");
 
@@ -41,7 +41,7 @@
 				this.x = x + carta.desplazamiento;
 				carta.desplazamiento += 40;
 				this.y = y;
-				this.valor = Math.round(Math.random() * 11 +1);
+				this.valor = Math.round(Math.random() * 12 +1);
 				this.palo=Math.ceil(Math.random()*4);
 				//1->picas
 				//2->diamantes
@@ -52,6 +52,7 @@
 
 		var cartasJugador = [];
 		var cartasCrupier = [];
+
 
 		function dibujarCartas() {
 			for (i in cartasJugador) {
@@ -79,6 +80,8 @@
 
 		function plantarme() {
 			document.getElementById("pedir").disabled = true;
+			document.getElementById("plantar").disabled = true;
+			document.getElementById("reset").style.visibility= "visible";
 			let pointsUser = 0;
 			let pointsHouse = 0;
 			let info=document.getElementById("info")
@@ -107,6 +110,9 @@
 		}
 
 
+		function playagain(){
+			location.reload(true);
+		}
 	</script>
 </body>
 
