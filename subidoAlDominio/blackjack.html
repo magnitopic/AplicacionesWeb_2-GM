@@ -45,6 +45,8 @@
 			static x = 50; // static pertenece a la clase
 			static y = 50;
 			constructor(x, y,valor,palo) {
+				this.img = new Image();
+				//img.src = "imagenes/porteria.png";
 				this.valor = valor
 				this.palo=palo
 			}
@@ -74,19 +76,22 @@
 			ctx.fillRect(carta.x, carta.y, 200, 320);
 			ctx.font = "220px calibri";
 			ctx.fillStyle = "black";
-			if(cartaDibujar.valor<10){
+			ctx.drawImage(cartaDibujar.img, carta.x, carta.y, 200, 320)
+			/* if(cartaDibujar.valor<10){
 				ctx.fillText(cartaDibujar.valor, carta.x+40, carta.y+240);
 			}else{
 				ctx.fillText(cartaDibujar.valor, carta.x-15, carta.y+240);
-			}
+			} */
 			carta.x+=250
 		}
 
 		function pedirCarta() {
 			if (indiceCarta<52){
-				cartasJugador.push(cartas[indiceCarta]);
+				CJ=cartas[indiceCarta]		//Carta Jugada
+				cartasJugador.push(CJ);
+				CJ.img.src = "imagenes/cartas/"+CJ.valor+"C.svg";
+				dibujarCarta(CJ);
 				indiceCarta++;
-				dibujarCarta(cartas[indiceCarta]);
 			}
 		}
 
