@@ -1,7 +1,5 @@
 #canvas {
   background-color: cadetblue;
-  width: 800px;
-  height: 400px;
   background-position: center;
   background-image: url('../imagenes/fondoBJ.jpg');
   background-size: cover;

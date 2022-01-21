@@ -18,7 +18,7 @@
 		<input type="button" value="Plantarme" onclick="plantarme()" id="plantar" class="button">
 	</div>
 	<div id="info"></div>
-	<script>	
+	<script>
 		// Codigo copiado para hacer esquinas redondas
 		CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
 			if (w < 2 * r) r = w / 2;
@@ -32,40 +32,39 @@
 			this.closePath();
 			return this;
 		}
-		var dpr = window.devicePixelRatio || 1;	
+
 		var canvas = document.getElementById("canvas");
 		canvas.width = 800 * 2;
-	    canvas.height = 400 * 2;
-	    canvas.style.width = 800 + "px";
-	    canvas.style.height = 400 + "px";
+		canvas.height = 400 * 2;
+		canvas.style.width = 800 + "px";
+		canvas.style.height = 400 + "px";
 		var ctx = canvas.getContext("2d");
-		//ctx.scale(dpr, dpr);
 
 		class carta {
 			static x = 50; // static pertenece a la clase
 			static y = 50;
-			constructor(x, y,valor,palo) {
+			constructor(valor, palo) {
 				this.img = new Image();
 				//img.src = "imagenes/porteria.png";
 				this.valor = valor
-				this.palo=palo
+				this.palo = palo
 			}
 		}
 
 		// Generamos las cartas. Con atributos valor y palo
-		var cartas=[];
-		var cartasJugador=[];
-		var cartasCrupier=[];
-		var indiceCarta=0;
-		for (i=0; i<4;i++) {
-			for (j=1; j<=13; j++) {
-				cartas.push( new carta(10,10,j,i));
+		var cartas = [];
+		var cartasJugador = [];
+		var cartasCrupier = [];
+		var indiceCarta = 0;
+		for (i = 0; i < 4; i++) {
+			for (j = 1; j <= 13; j++) {
+				cartas.push(new carta(j, i));
 			}
 		}
 
 		//Barajamos las cartas
-		for (i=0;i<100;i++){
-			cartas.splice(Math.random()*52, 0, cartas[0]);
+		for (i = 0; i < 100; i++) {
+			cartas.splice(Math.random() * 52, 0, cartas[0]);
 			cartas.shift();
 		}
 		console.log(cartas);
@@ -82,14 +81,16 @@
 			}else{
 				ctx.fillText(cartaDibujar.valor, carta.x-15, carta.y+240);
 			} */
-			carta.x+=250
+			carta.x += 250
 		}
 
 		function pedirCarta() {
-			if (indiceCarta<52){
-				CJ=cartas[indiceCarta]		//Carta Jugada
+			if (indiceCarta < 52) {
+				console.log(indiceCarta);
+				CJ = cartas[indiceCarta]		//Carta Jugada
+				console.log(CJ.valor);
 				cartasJugador.push(CJ);
-				CJ.img.src = "imagenes/cartas/"+CJ.valor+"C.svg";
+				CJ.img.src = "imagenes/cartas/" + CJ.valor.toString() + "C.svg";
 				dibujarCarta(CJ);
 				indiceCarta++;
 			}
@@ -98,10 +99,10 @@
 		function plantarme() {
 			document.getElementById("pedir").disabled = true;
 			document.getElementById("plantar").disabled = true;
-			document.getElementById("reset").style.visibility= "visible";
+			document.getElementById("reset").style.visibility = "visible";
 			let pointsUser = 0;
 			let pointsHouse = 0;
-			let info=document.getElementById("info")
+			let info = document.getElementById("info")
 			for (i in cartasJugador) {
 				pointsUser += cartasJugador[i].valor;
 			}
@@ -113,25 +114,25 @@
 			}
 			info.innerHTML = "Puntuación jugador: " + pointsUser + "<br>Puntuación crupier: " + pointsHouse
 			// Dibujamos las cartas del crupier
-			carta.x=50
-			carta.y=400
+			carta.x = 50
+			carta.y = 400
 			for (i in cartasCrupier) {
 				dibujarCarta(cartasCrupier[i])
 			}
 			// comprobamos ganador
-			if (pointsUser>21){
+			if (pointsUser > 21) {
 				info.innerHTML += "<br><b>Has perdido por que te has pasado de puntos</b>"
-			}else if (pointsHouse>21){
+			} else if (pointsHouse > 21) {
 				info.innerHTML += "<br><b>Has ganado por que el croupier se ha pasado de puntos</b>"
-			}else if (pointsHouse>=pointsUser){
+			} else if (pointsHouse >= pointsUser) {
 				info.innerHTML += "<br><b>Ha ganado el croupier</b>"
-			}else{
+			} else {
 				info.innerHTML += "<br><b>Has ganado!!!</b>"
 			}
 		}
 
 		//Recarga la pagina cuando se acaba la partida
-		function playagain(){
+		function playagain() {
 			location.reload(true);
 		}
 	</script>
