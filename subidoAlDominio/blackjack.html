@@ -31,13 +31,19 @@
 			this.arcTo(x, y, x + w, y, r);
 			this.closePath();
 			return this;
-		}	
+		}
+		var dpr = window.devicePixelRatio || 1;	
 		var canvas = document.getElementById("canvas");
+		canvas.width = 800 * 2;
+	    canvas.height = 400 * 2;
+	    canvas.style.width = 800 + "px";
+	    canvas.style.height = 400 + "px";
 		var ctx = canvas.getContext("2d");
+		//ctx.scale(dpr, dpr);
 
 		class carta {
-			static x = 10; // static pertenece a la clase
-			static y = 10;
+			static x = 50; // static pertenece a la clase
+			static y = 50;
 			constructor(x, y,valor,palo) {
 				this.valor = valor
 				this.palo=palo
@@ -62,21 +68,25 @@
 		}
 		console.log(cartas);
 
-		function dibujarCartasJugador(cartaDibujar) {
-			ctx.roundRect(carta.x, carta.y, 30, 50, 0).stroke();
+		function dibujarCarta(cartaDibujar) {
+			ctx.roundRect(carta.x, carta.y, 200, 320, 0).stroke();
 			ctx.fillStyle = "white";
-			ctx.fillRect(carta.x, carta.y, 30, 50);
-			ctx.font = "20px TimesNewRoman";
+			ctx.fillRect(carta.x, carta.y, 200, 320);
+			ctx.font = "220px calibri";
 			ctx.fillStyle = "black";
-			ctx.fillText(cartaDibujar.valor, carta.x + 3, 40);
-			carta.x+=40
+			if(cartaDibujar.valor<10){
+				ctx.fillText(cartaDibujar.valor, carta.x+40, carta.y+240);
+			}else{
+				ctx.fillText(cartaDibujar.valor, carta.x-15, carta.y+240);
+			}
+			carta.x+=250
 		}
 
 		function pedirCarta() {
 			if (indiceCarta<52){
 				cartasJugador.push(cartas[indiceCarta]);
 				indiceCarta++;
-				dibujarCartasJugador(cartas[indiceCarta]);
+				dibujarCarta(cartas[indiceCarta]);
 			}
 		}
 
@@ -98,16 +108,10 @@
 			}
 			info.innerHTML = "Puntuación jugador: " + pointsUser + "<br>Puntuación crupier: " + pointsHouse
 			// Dibujamos las cartas del crupier
-			carta.x=10
-			carta.y=80
+			carta.x=50
+			carta.y=400
 			for (i in cartasCrupier) {
-				ctx.roundRect(carta.x, carta.y, 30, 50, 0).stroke();
-				ctx.fillStyle = "white";
-				ctx.fillRect(carta.x, carta.y, 30, 50);
-				ctx.font = "20px TimesNewRoman";
-				ctx.fillStyle = "black";
-				ctx.fillText(cartasCrupier[i].valor, carta.x, carta.y + 30);
-				carta.x+=40
+				dibujarCarta(cartasCrupier[i])
 			}
 			// comprobamos ganador
 			if (pointsUser>21){
@@ -121,7 +125,7 @@
 			}
 		}
 
-
+		//Recarga la pagina cuando se acaba la partida
 		function playagain(){
 			location.reload(true);
 		}
