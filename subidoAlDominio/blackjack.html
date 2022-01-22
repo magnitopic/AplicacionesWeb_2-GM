@@ -1,141 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/blackjack.css" />
+		<title>Black Jack</title>
+	</head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/blackjack.css">
-	<title>Black Jack</title>
-</head>
+	<body>
+		<div id="title">Juego del Black Jack</div>
+		<div id="canvasDiv"><canvas id="canvas"></canvas></div>
+		<div id="botones">
+			<input
+				type="button"
+				value="Pedir Carta"
+				onclick="pedirCarta()"
+				id="pedir"
+				class="button"
+			/>
+			<input
+				type="button"
+				value="Jugar otra vez!"
+				id="reset"
+				onclick="playagain()"
+			/>
+			<input
+				type="button"
+				value="Plantarme"
+				onclick="plantarme()"
+				id="plantar"
+				class="button"
+			/>
+		</div>
+		<div id="info"></div>
+		<script>
+			// Montamos el canvas con alta resolución
+			var canvas = document.getElementById("canvas");
+			canvas.width = 1220 * 2;
+			canvas.height = 400 * 2;
+			canvas.style.width = 1220 + "px";
+			canvas.style.height = 400 + "px";
+			var ctx = canvas.getContext("2d");
 
-<body>
-	<div id="title">Juego del Black Jack</div>
-	<div id="canvasDiv"><canvas id="canvas"></canvas></div>
-	<div id="botones">
-		<input type="button" value="Pedir Carta" onclick="pedirCarta()" id="pedir" class="button">
-		<input type="button" value="Jugar otra vez!" id="reset" onclick="playagain()">
-		<input type="button" value="Plantarme" onclick="plantarme()" id="plantar" class="button">
-	</div>
-	<div id="info"></div>
-	<script>
-		// Codigo copiado para hacer esquinas redondas
-		CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
-			if (w < 2 * r) r = w / 2;
-			if (h < 2 * r) r = h / 2;
-			this.beginPath();
-			this.moveTo(x + r, y);
-			this.arcTo(x + w, y, x + w, y + h, r);
-			this.arcTo(x + w, y + h, x, y + h, r);
-			this.arcTo(x, y + h, x, y, r);
-			this.arcTo(x, y, x + w, y, r);
-			this.closePath();
-			return this;
-		}
+			// Classe carta
+			class carta {
+				// las variables static pertenece a la clase
+				static x = 50; 
+				static y = 50;
 
-		var canvas = document.getElementById("canvas");
-		canvas.width = 800 * 2;
-		canvas.height = 400 * 2;
-		canvas.style.width = 800 + "px";
-		canvas.style.height = 400 + "px";
-		var ctx = canvas.getContext("2d");
-
-		class carta {
-			static x = 50; // static pertenece a la clase
-			static y = 50;
-			constructor(valor, palo) {
-				this.img = new Image();
-				//img.src = "imagenes/porteria.png";
-				this.valor = valor
-				this.palo = palo
+				constructor(valor, palo) {
+					this.img = new Image();
+					this.valor = valor;
+					this.palo = palo;
+				}
 			}
-		}
 
-		// Generamos las cartas. Con atributos valor y palo
-		var cartas = [];
-		var cartasJugador = [];
-		var cartasCrupier = [];
-		var indiceCarta = 0;
-		for (i = 0; i < 4; i++) {
-			for (j = 1; j <= 13; j++) {
-				cartas.push(new carta(j, i));
+			// Variables que vamos a usar
+			var cartas = [];
+			var cartasJugador = [];
+			var cartasCrupier = [];
+			var indiceCarta = 0;
+			var palos=["S","H","D","C"]; 
+			// Generamos las cartas. Con atributos valor y palo
+			for (i = 0; i < 4; i++) {
+				for (j = 1; j <= 13; j++) {
+					cartas.push(new carta(j, palos[i]));
+				}
 			}
-		}
 
-		//Barajamos las cartas
-		for (i = 0; i < 100; i++) {
-			cartas.splice(Math.random() * 52, 0, cartas[0]);
-			cartas.shift();
-		}
-		console.log(cartas);
-
-		function dibujarCarta(cartaDibujar) {
-			ctx.roundRect(carta.x, carta.y, 200, 320, 0).stroke();
-			ctx.fillStyle = "white";
-			ctx.fillRect(carta.x, carta.y, 200, 320);
-			ctx.font = "220px calibri";
-			ctx.fillStyle = "black";
-			ctx.drawImage(cartaDibujar.img, carta.x, carta.y, 200, 320)
-			/* if(cartaDibujar.valor<10){
-				ctx.fillText(cartaDibujar.valor, carta.x+40, carta.y+240);
-			}else{
-				ctx.fillText(cartaDibujar.valor, carta.x-15, carta.y+240);
-			} */
-			carta.x += 250
-		}
-
-		function pedirCarta() {
-			if (indiceCarta < 52) {
-				console.log(indiceCarta);
-				CJ = cartas[indiceCarta]		//Carta Jugada
-				console.log(CJ.valor);
-				cartasJugador.push(CJ);
-				CJ.img.src = "imagenes/cartas/" + CJ.valor.toString() + "C.svg";
-				dibujarCarta(CJ);
-				indiceCarta++;
+			//Barajamos las cartas
+			for (i = 0; i < 100; i++) {
+				cartas.splice(Math.random() * 52, 0, cartas[0]);
+				cartas.shift();
 			}
-		}
 
-		function plantarme() {
-			document.getElementById("pedir").disabled = true;
-			document.getElementById("plantar").disabled = true;
-			document.getElementById("reset").style.visibility = "visible";
-			let pointsUser = 0;
-			let pointsHouse = 0;
-			let info = document.getElementById("info")
-			for (i in cartasJugador) {
-				pointsUser += cartasJugador[i].valor;
+			function dibujarCarta(CJ) {
+				// Tenemos que primero cargar la carta y luego añadir el src
+				// Si no las cartas no cargan en la pagina
+				CJ.img.onload = () => {
+					ctx.drawImage(CJ.img, carta.x, carta.y, 239, 335);
+					carta.x += 300;
+				};
+				CJ.img.src = "imagenes/cartas/" + CJ.valor.toString() + CJ.palo + ".svg";
 			}
-			carta.desplazamiento = 0;
-			while (pointsHouse < 17) {
-				cartasCrupier.push(cartas[indiceCarta]);
-				pointsHouse += cartas[indiceCarta].valor
-				indiceCarta++;
-			}
-			info.innerHTML = "Puntuación jugador: " + pointsUser + "<br>Puntuación crupier: " + pointsHouse
-			// Dibujamos las cartas del crupier
-			carta.x = 50
-			carta.y = 400
-			for (i in cartasCrupier) {
-				dibujarCarta(cartasCrupier[i])
-			}
-			// comprobamos ganador
-			if (pointsUser > 21) {
-				info.innerHTML += "<br><b>Has perdido por que te has pasado de puntos</b>"
-			} else if (pointsHouse > 21) {
-				info.innerHTML += "<br><b>Has ganado por que el croupier se ha pasado de puntos</b>"
-			} else if (pointsHouse >= pointsUser) {
-				info.innerHTML += "<br><b>Ha ganado el croupier</b>"
-			} else {
-				info.innerHTML += "<br><b>Has ganado!!!</b>"
-			}
-		}
 
-		//Recarga la pagina cuando se acaba la partida
-		function playagain() {
-			location.reload(true);
-		}
-	</script>
-</body>
+			function pedirCarta() {
+				// Ponemos un maximo de cartas que pueda sacar para que el crupier tambíen pueda sacar las suyas
+				if (indiceCarta < 8) {
+					let CJ = cartas[indiceCarta]; //Carta Jugada
+					cartasJugador.push(CJ);
+					dibujarCarta(CJ);
+					indiceCarta++;
+				}
+			}
 
+			function plantarme() {
+				document.getElementById("pedir").disabled = true;
+				document.getElementById("plantar").disabled = true;
+				document.getElementById("reset").style.visibility = "visible";
+				let pointsUser = 0;
+				let pointsCrupier = 0;
+				let info = document.getElementById("info");
+				// Contamos e imprimimos los puntos del jugador
+				for (i in cartasJugador) {
+					pointsUser += cartasJugador[i].valor;
+				}
+				// Sacamos cartas al crupier y contamos sus puntos
+				while (pointsCrupier < 17) {
+					cartasCrupier.push(cartas[indiceCarta]);
+					pointsCrupier += cartas[indiceCarta].valor;
+					indiceCarta++;
+				}
+				// Putos de la partida se ponen en info
+				info.innerHTML = "Puntuación jugador: " + pointsUser + "<br>Puntuación crupier: " + pointsCrupier;
+				// Dibujamos las cartas del crupier
+				carta.x = 50;
+				carta.y = 400;
+				for (i in cartasCrupier) {
+					dibujarCarta(cartasCrupier[i]);
+				}
+				// comprobamos ganador
+				if (pointsUser > 21) {
+					info.innerHTML +=
+						"<br><b>Has perdido... Por que te has pasado de puntos</b>";
+				} else if (pointsCrupier > 21) {
+					info.innerHTML +=
+						"<br><b>Has ganado!!! Por que el croupier se ha pasado de puntos</b>";
+				} else if (pointsCrupier >= pointsUser) {
+					info.innerHTML += "<br><b>Ha ganado el croupier...</b>";
+				} else {
+					info.innerHTML += "<br><b>Has ganado!!!</b>";
+				}
+			}
+
+			//Recarga la pagina cuando se presiona el botton
+			function playagain() {
+				location.reload(true);
+			}
+		</script>
+	</body>
 </html>
