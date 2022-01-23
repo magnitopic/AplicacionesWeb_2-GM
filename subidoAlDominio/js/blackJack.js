@@ -85,12 +85,12 @@ function plantarme() {
 		dibujarCarta(cartasCrupier[i]);
 	}
 	// Comprobamos ganador
-	if (pointsUser > 21) {
-		info.innerHTML +=
-			"<br><b>Has perdido... Por que te has pasado de puntos</b>";
+	if (pointsUser == 21 || pointsUserAlt == 21) {
+		info.innerHTML +="<br><b>Blackjack!!! Has ganado!</b>";
+	} else if (pointsUser > 21) {
+		info.innerHTML +="<br><b>Has perdido... Te has pasado de puntos</b>";
 	} else if (pointsCrupier > 21) {
-		info.innerHTML +=
-			"<br><b>Has ganado!!! Por que el croupier se ha pasado de puntos</b>";
+		info.innerHTML +="<br><b>Has ganado!!! El croupier se ha pasado de puntos</b>";
 	} else if (pointsCrupier >= pointsUser) {
 		info.innerHTML += "<br><b>Ha ganado el croupier...</b>";
 	} else {
