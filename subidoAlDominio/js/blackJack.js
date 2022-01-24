@@ -85,7 +85,7 @@ function plantarme() {
 		dibujarCarta(cartasCrupier[i]);
 	}
 	// Comprobamos ganador
-	if (pointsUser == 21 || pointsUserAlt == 21) {
+	if (pointsUser == 21) {
 		info.innerHTML +="<br><b>Blackjack!!! Has ganado!</b>";
 	} else if (pointsUser > 21) {
 		info.innerHTML +="<br><b>Has perdido... Te has pasado de puntos</b>";
