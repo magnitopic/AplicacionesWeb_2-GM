@@ -13,11 +13,51 @@
 
 	Register your data to obtain your ticket
 	<form action="registrar.php" method="post" style="padding: 10px;">
-		<p>Name: <input type="text" name="name"></p>
-		<p>Surname: <input type="text" name="surname"></p>
-		<p>Email: <input type="email" name="email"></p>
-		<p>Phone: <input type="text" name="phone"></p>
-		<input type="submit" value="RESERVE TICKETS" id="submitButton">
+		<table>
+			<tr>
+				<td>Name: </td>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<td>Surname: </td>
+				<td><input type="text" name="surname"></td>
+			</tr>
+			<tr>
+				<td>Email: </td>
+				<td><input type="email" name="email"></td>
+			</tr>
+			<tr>
+				<td>Phone: </td>
+				<td><input type="text" name="phone"></td>
+			</tr>
+			<tr>
+				<td>City:</td>
+				<td>
+					<select name="city">
+						<option>Madrid</option>
+						<option>Extermadura</option>
+						<option>Galicia</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Comments:</td>
+				<td><textarea name="comments" cols="15" rows="5"></textarea></td>
+			</tr>
+
+			<tr>
+				<td><input type="checkbox" style="text-align: right;"></td>
+				<td><a href="#">I accept the terms and conditions</a></td>
+			</tr>
+
+			<tr>
+				<td colspan="2" style="text-align: center;">
+					<input type="submit" value="RESERVE TICKETS" id="submitButton"
+						style="margin: 15px;background-color: lightgreen;">
+				</td>
+			</tr>
+		</table>
 	</form>
 </body>
 

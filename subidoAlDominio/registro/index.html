@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" cFontent="width=device-width, initial-scale=1.0">
+	<title>Form Page</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div id="header">
+		<h1>Welcome to the exhibition</h1>
+	</div>
+
+	<center>
+	<div id="main">
+		<h3>Register your data to obtain your ticket</h3>
+		<form action="registrar.php" method="post" style="padding: 10px;">
+			<table>
+				<tr>
+					<td>Name: </td>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<td>Surname: </td>
+					<td><input type="text" name="surname"></td>
+				</tr>
+				<tr>
+					<td>Email: </td>
+					<td><input type="email" name="email"></td>
+				</tr>
+				<tr>
+					<td>Phone: </td>
+					<td><input type="text" name="phone"></td>
+				</tr>
+				<tr>
+					<td>City:</td>
+					<td>
+						<select name="city">
+							<option>Madrid</option>
+							<option>Extermadura</option>
+							<option>Galicia</option>
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Comments:</td>
+					<td><textarea name="comments" cols="15" rows="5"></textarea></td>
+				</tr>
+
+				<tr>
+					<td style="text-align: right;"><input type="checkbox"></td>
+					<td><a href="#">I accept the terms and conditions</a></td>
+				</tr>
+
+				<tr>
+					<td colspan="2" style="text-align: center;">
+						<input type="submit" value="RESERVE TICKETS" id="submitButton"
+							style="margin: 15px;background-color: lightgreen;">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	</center>
+</body>
+
+</html>
