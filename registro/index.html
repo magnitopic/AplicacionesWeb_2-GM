@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			cFontent="width=device-width, initial-scale=1.0"
+		/>
+		<title>Form Page</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<div id="header">
+			<h1>Welcome to the exhibition</h1>
+		</div>
+
+		<center>
+			<div id="main">
+				<h2>Register your data to obtain your ticket</h2>
+				<form action="registrar.php" method="post" style="padding: 10px">
+					<table>
+						<tr>
+							<td>Name:</td>
+							<td><input type="text" name="name" required /></td>
+						</tr>
+						<tr>
+							<td>Surname:</td>
+							<td>
+								<input type="text" name="surname" required />
+							</td>
+						</tr>
+						<tr>
+							<td>Email:</td>
+							<td>
+								<input type="email" name="email" required />
+							</td>
+						</tr>
+						<tr>
+							<td>Phone:</td>
+							<td><input type="text" name="phone" required /></td>
+						</tr>
+						<tr>
+							<td>City:</td>
+							<td>
+								<select name="city" required>
+									<option>Madrid</option>
+									<option>Extermadura</option>
+									<option>Galicia</option>
+								</select>
+							</td>
+						</tr>
+
+						<tr>
+							<td>Nº of participants:</td>
+							<td>
+								<input
+									type="number"
+									name="participants"
+									value="1"
+									required
+								/>
+							</td>
+						</tr>
+						<tr>
+							<td>Gender</td>
+							<td>
+								<select name="gender" required>
+									<option>Male</option>
+									<option>Female</option>
+									<option>Other</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>Comments:</td>
+							<td>
+								<textarea
+									name="comments"
+									cols="14"
+									rows="3"
+								></textarea>
+							</td>
+						</tr>
+
+						<tr>
+							<td style="text-align: right">
+								<input id="terms" type="checkbox" />
+							</td>
+							<td>
+								<a href="#"
+									>I accept the terms and conditions</a
+								>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="2" style="text-align: center">
+								<input
+									type="submit"
+									value="RESERVE TICKETS"
+									id="submitButton"
+									disabled="true"
+								/>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</center>
+		<script src="index.js"></script>
+	</body>
+</html>
